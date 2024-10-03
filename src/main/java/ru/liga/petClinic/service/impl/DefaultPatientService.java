@@ -3,6 +3,7 @@ package ru.liga.petClinic.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.multipart.MultipartFile;
 import ru.liga.petClinic.dto.PatientRepositoryResponse;
 import ru.liga.petClinic.dto.PatientRequestBody;
 import ru.liga.petClinic.dto.PatientResponseDto;
@@ -15,7 +16,10 @@ import ru.liga.petClinic.exception.PatientNotFoundException;
 import ru.liga.petClinic.repository.PatientsRepository;
 import ru.liga.petClinic.service.PatientService;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Base64;
 import java.util.List;
@@ -47,7 +51,7 @@ public class DefaultPatientService implements PatientService {
     }
 
     @Override
-    public PatientResponseDto createPatient(PatientRequestBody patientRequestBody, BindingResult bindingResult) {
+    public PatientResponseDto createPatientBase64(PatientRequestBody patientRequestBody, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new PatientBadRequestException("nickname и type пациента должны быть обязательно заполнены");
         }
@@ -114,13 +118,79 @@ public class DefaultPatientService implements PatientService {
     }
 
     @Override
-    public byte[] getPatientImage(Integer id) {
+    public byte[] getPatientImageBase64(Integer patientId) {
         String directoryPath = "images";
-        String imagePath = directoryPath + File.separator + id + ".png";
+        String imagePath = directoryPath + File.separator + patientId + ".png";
 
         File imageFile = new File(imagePath);
         if (!imageFile.exists()) {
-            throw new FileNotFoundException("Изображение с ID " + id + " не найдено");
+            throw new FileNotFoundException("Изображение с ID " + patientId + " не найдено");
+        }
+
+        try (FileInputStream fis = new FileInputStream(imageFile)) {
+            byte[] imageBytes = new byte[(int) imageFile.length()];
+            fis.read(imageBytes);
+
+            return imageBytes;
+        } catch (IOException e) {
+            throw new RuntimeException("Ошибка при чтении изображения: " + e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public PatientResponseDto createPatientMultiPart(PatientRequestBody patientRequestBody, MultipartFile image) {
+        if (patientsRepository.existsByNicknameAndType(
+                patientRequestBody.getNickname(),
+                patientRequestBody.getType()
+        )) {
+            throw new PatientConflictException("nickname " + patientRequestBody.getNickname() + " и type " + patientRequestBody.getType() + " заняты");
+        }
+
+        String directoryPath = "images";
+        File directory = new File(directoryPath);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+
+        try {
+            byte[] imageBytes = image.getBytes();
+
+            Patient newPatient = new Patient(
+                    patientRequestBody.getNickname(),
+                    patientRequestBody.getType(),
+                    new Timestamp(System.currentTimeMillis()),
+                    patientRequestBody.getStatus(),
+                    patientRequestBody.getDescription()
+            );
+
+            PatientRepositoryResponse savedPatient = patientsRepository.save(newPatient);
+
+            String imagePath = directoryPath + File.separator + savedPatient.getPatientId() + ".png";
+            try (FileOutputStream fos = new FileOutputStream(imagePath)) {
+                fos.write(imageBytes);
+            }
+
+            return new PatientResponseDto(
+                    savedPatient.getPatientId(),
+                    savedPatient.getPatientEntity().getNickname(),
+                    savedPatient.getPatientEntity().getType(),
+                    savedPatient.getPatientEntity().getDate(),
+                    savedPatient.getPatientEntity().getStatus(),
+                    savedPatient.getPatientEntity().getDescription()
+            );
+        } catch (IOException e) {
+            throw new RuntimeException("Ошибка при сохранении изображения: " + e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public byte[] getPatientImageMultipart(Integer patientId) {
+        String directoryPath = "images";
+        String imagePath = directoryPath + File.separator + patientId + ".png";
+
+        File imageFile = new File(imagePath);
+        if (!imageFile.exists()) {
+            throw new FileNotFoundException("Изображение с ID " + patientId + " не найдено");
         }
 
         try (FileInputStream fis = new FileInputStream(imageFile)) {

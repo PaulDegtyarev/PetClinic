@@ -1,5 +1,7 @@
 package ru.liga.petClinic.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -7,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import ru.liga.petClinic.dto.PatientRequestBody;
 import ru.liga.petClinic.dto.PatientResponseDto;
 import ru.liga.petClinic.dto.StatusRequestBody;
@@ -29,11 +32,11 @@ public class PatientController {
         return new ResponseEntity<>(patientService.getAllPatients(), HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<PatientResponseDto> createPatient(
+    @PostMapping("/base64")
+    public ResponseEntity<PatientResponseDto> createPatientBase64(
             @RequestBody @Valid PatientRequestBody patientRequest,
             BindingResult bindingResult) {
-        return new ResponseEntity<>(patientService.createPatient(patientRequest, bindingResult), HttpStatus.CREATED);
+        return new ResponseEntity<>(patientService.createPatientBase64(patientRequest, bindingResult), HttpStatus.CREATED);
     }
 
     @PutMapping("/{patientId}")
@@ -44,9 +47,29 @@ public class PatientController {
         return new ResponseEntity<>(patientService.updatePatientStatusByPatientId(patientId, statusRequest), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}/image")
-    public ResponseEntity<byte[]> getPatientImage(@PathVariable Integer id) {
-        byte[] imageBytes = patientService.getPatientImage(id);
+    @GetMapping("/{patientId}/image/base64")
+    public ResponseEntity<byte[]> getPatientImage(@PathVariable Integer patientId) {
+        byte[] imageBytes = patientService.getPatientImageBase64(patientId);
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imageBytes);
+    }
+
+    @PostMapping("/multipart")
+    public ResponseEntity<PatientResponseDto> createPatient(
+            @RequestParam("patientRequest") String patientRequestJson,
+            @RequestParam("image") MultipartFile image) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        PatientRequestBody patientRequest;
+        try {
+            patientRequest = objectMapper.readValue(patientRequestJson, PatientRequestBody.class);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        return new ResponseEntity<>(patientService.createPatientMultiPart(patientRequest, image), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{patientId}/image/multipart")
+    public ResponseEntity<byte[]> getPatientImageMultipart(@PathVariable Integer patientId) {
+        byte[] imageBytes = patientService.getPatientImageMultipart(patientId);
         return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imageBytes);
     }
 }
