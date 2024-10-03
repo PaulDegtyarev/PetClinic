@@ -13,4 +13,5 @@ public class PatientRequestBody {
     @NotBlank private String type;
     private String status;
     private String description;
+    private String imageBase64;
 }

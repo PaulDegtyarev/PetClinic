@@ -3,6 +3,7 @@ package ru.liga.petClinic.config;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import ru.liga.petClinic.exception.FileNotFoundException;
 import ru.liga.petClinic.exception.PatientBadRequestException;
 import ru.liga.petClinic.exception.PatientConflictException;
 import ru.liga.petClinic.exception.PatientNotFoundException;
@@ -25,5 +26,11 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handlePatientConflictException(PatientConflictException patientConflictException) {
         return ResponseEntity.status(patientConflictException.getStatusCode())
                 .body(patientConflictException.getMessage());
+    }
+
+    @ExceptionHandler(FileNotFoundException.class)
+    public ResponseEntity<String> handleFileNotFoundException(FileNotFoundException fileNotFoundException) {
+        return ResponseEntity.status(fileNotFoundException.getStatusCode())
+                .body(fileNotFoundException.getMessage());
     }
 }

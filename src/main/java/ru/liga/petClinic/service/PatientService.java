@@ -14,4 +14,6 @@ public interface PatientService {
     PatientResponseDto createPatient(PatientRequestBody patientRequestBody, BindingResult bindingResult);
 
     PatientResponseDto updatePatientStatusByPatientId(Integer patientId, StatusRequestBody patientRequest);
+
+    byte[] getPatientImage(Integer id);
 }

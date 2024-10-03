@@ -8,13 +8,16 @@ import ru.liga.petClinic.dto.PatientRequestBody;
 import ru.liga.petClinic.dto.PatientResponseDto;
 import ru.liga.petClinic.dto.StatusRequestBody;
 import ru.liga.petClinic.entity.Patient;
+import ru.liga.petClinic.exception.FileNotFoundException;
 import ru.liga.petClinic.exception.PatientBadRequestException;
 import ru.liga.petClinic.exception.PatientConflictException;
 import ru.liga.petClinic.exception.PatientNotFoundException;
 import ru.liga.petClinic.repository.PatientsRepository;
 import ru.liga.petClinic.service.PatientService;
 
+import java.io.*;
 import java.sql.Timestamp;
+import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,6 +59,14 @@ public class DefaultPatientService implements PatientService {
             throw new PatientConflictException("nickname " + patientRequestBody.getNickname() + " и type " + patientRequestBody.getType() + " заняты");
         }
 
+        byte[] imageBytes = Base64.getDecoder().decode(patientRequestBody.getImageBase64());
+        String directoryPath = "images";
+        File directory = new File(directoryPath);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+
+
         Patient newPatient = new Patient(
                 patientRequestBody.getNickname(),
                 patientRequestBody.getType(),
@@ -65,6 +76,13 @@ public class DefaultPatientService implements PatientService {
         );
 
         PatientRepositoryResponse savedPatient = patientsRepository.save(newPatient);
+
+        String imagePath = directoryPath + File.separator + savedPatient.getPatientId() + ".png";
+        try (FileOutputStream fos = new FileOutputStream(imagePath)) {
+            fos.write(imageBytes);
+        } catch (IOException e) {
+            throw new RuntimeException("Ошибка при сохранении изображения: " + e.getMessage(), e);
+        }
 
         return new PatientResponseDto(
                 savedPatient.getPatientId(),
@@ -95,4 +113,23 @@ public class DefaultPatientService implements PatientService {
         );
     }
 
+    @Override
+    public byte[] getPatientImage(Integer id) {
+        String directoryPath = "images";
+        String imagePath = directoryPath + File.separator + id + ".png";
+
+        File imageFile = new File(imagePath);
+        if (!imageFile.exists()) {
+            throw new FileNotFoundException("Изображение с ID " + id + " не найдено");
+        }
+
+        try (FileInputStream fis = new FileInputStream(imageFile)) {
+            byte[] imageBytes = new byte[(int) imageFile.length()];
+            fis.read(imageBytes);
+
+            return imageBytes;
+        } catch (IOException e) {
+            throw new RuntimeException("Ошибка при чтении изображения: " + e.getMessage(), e);
+        }
+    }
 }

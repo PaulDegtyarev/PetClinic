@@ -3,6 +3,7 @@ package ru.liga.petClinic.controller;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -41,5 +42,11 @@ public class PatientController {
             @RequestBody StatusRequestBody statusRequest
     ) {
         return new ResponseEntity<>(patientService.updatePatientStatusByPatientId(patientId, statusRequest), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/image")
+    public ResponseEntity<byte[]> getPatientImage(@PathVariable Integer id) {
+        byte[] imageBytes = patientService.getPatientImage(id);
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imageBytes);
     }
 }
