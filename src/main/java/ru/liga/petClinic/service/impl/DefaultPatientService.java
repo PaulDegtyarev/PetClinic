@@ -119,7 +119,7 @@ public class DefaultPatientService implements PatientService {
     }
 
     @Override
-    public byte[] getPatientImageBase64(Integer patientId) {
+    public byte[] getPatientImage(Integer patientId) {
         String directoryPath = "images";
         String imagePath = directoryPath + File.separator + patientId + ".png";
 
@@ -185,27 +185,7 @@ public class DefaultPatientService implements PatientService {
     }
 
     @Override
-    public byte[] getPatientImageMultipart(Integer patientId) {
-        String directoryPath = "images";
-        String imagePath = directoryPath + File.separator + patientId + ".png";
-
-        File imageFile = new File(imagePath);
-        if (!imageFile.exists()) {
-            throw new FileNotFoundException("Изображение с ID " + patientId + " не найдено");
-        }
-
-        try (FileInputStream fis = new FileInputStream(imageFile)) {
-            byte[] imageBytes = new byte[(int) imageFile.length()];
-            fis.read(imageBytes);
-
-            return imageBytes;
-        } catch (IOException e) {
-            throw new RuntimeException("Ошибка при чтении изображения: " + e.getMessage(), e);
-        }
-    }
-
-    @Override
-    public void uploadPatientImageOctetStream(Integer patientId, byte[] imageBytes) {
+    public void createPatientOctetStream(Integer patientId, byte[] imageBytes) {
         PatientRepositoryResponse patient = patientsRepository.findPatientByPatientId(patientId)
                 .orElseThrow(() -> new PatientNotFoundException("Пациент с номером: " + patientId + " не найден"));
 
@@ -220,24 +200,6 @@ public class DefaultPatientService implements PatientService {
             fos.write(imageBytes);
         } catch (IOException e) {
             throw new RuntimeException("Ошибка при сохранении изображения: " + e.getMessage(), e);
-        }
-    }
-
-    @Override
-    public InputStreamResource downloadPatientImageOctetStream(Integer patientId) {
-        String directoryPath = "images";
-        String imagePath = directoryPath + File.separator + patientId + ".png";
-
-        File imageFile = new File(imagePath);
-        if (!imageFile.exists()) {
-            throw new FileNotFoundException("Изображение с ID " + patientId + " не найдено");
-        }
-
-        try {
-            FileInputStream fis = new FileInputStream(imageFile);
-            return new InputStreamResource(fis);
-        } catch (FileNotFoundException | java.io.FileNotFoundException e) {
-            throw new RuntimeException("Изображение не найдено: " + e.getMessage(), e);
         }
     }
 }
