@@ -1,5 +1,6 @@
-package ru.liga.rest.dto;
+package ru.liga.petClinic.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,8 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PatientRequestBody {
-    private String nickname;
-    private String type;
+    @NotBlank private String nickname;
+    @NotBlank private String type;
     private String status;
     private String description;
 }

@@ -1,10 +1,10 @@
-package ru.liga.rest;
+package ru.liga.petClinic;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RestApplicationTests {
+class PetClinicApplicationTests {
 
 	@Test
 	void contextLoads() {

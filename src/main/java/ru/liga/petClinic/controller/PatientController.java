@@ -1,13 +1,15 @@
-package ru.liga.rest.controller;
+package ru.liga.petClinic.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ru.liga.rest.dto.PatientRequestBody;
-import ru.liga.rest.dto.PatientResponseDto;
-import ru.liga.rest.dto.StatusRequestBody;
-import ru.liga.rest.service.PatientService;
+import ru.liga.petClinic.dto.PatientRequestBody;
+import ru.liga.petClinic.dto.PatientResponseDto;
+import ru.liga.petClinic.dto.StatusRequestBody;
+import ru.liga.petClinic.service.PatientService;
 
 import java.util.List;
 
@@ -27,8 +29,10 @@ public class PatientController {
     }
 
     @PostMapping
-    public ResponseEntity<PatientResponseDto> createPatient(@RequestBody PatientRequestBody patientRequest) {
-        return new ResponseEntity<>(patientService.createPatient(patientRequest), HttpStatus.CREATED);
+    public ResponseEntity<PatientResponseDto> createPatient(
+            @RequestBody @Valid PatientRequestBody patientRequest,
+            BindingResult bindingResult) {
+        return new ResponseEntity<>(patientService.createPatient(patientRequest, bindingResult), HttpStatus.CREATED);
     }
 
     @PutMapping("/{patientId}")

@@ -1,12 +1,11 @@
-package ru.liga.rest.repository.impl;
+package ru.liga.petClinic.repository.impl;
 
 import jakarta.annotation.PostConstruct;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Repository;
-import ru.liga.rest.dto.PatientRepositoryResponse;
-import ru.liga.rest.entity.Patient;
-import ru.liga.rest.repository.PatientsRepository;
+import ru.liga.petClinic.dto.PatientRepositoryResponse;
+import ru.liga.petClinic.entity.Patient;
+import ru.liga.petClinic.repository.PatientsRepository;
 
 import java.sql.Timestamp;
 import java.util.HashMap;
@@ -15,8 +14,8 @@ import java.util.Map;
 import java.util.Optional;
 
 @Repository
+@Log4j2
 public class DefaultPatientsRepository implements PatientsRepository {
-    private static final Logger log = LogManager.getLogger(DefaultPatientsRepository.class);
     private Map<Integer, Patient> patients = new HashMap<>();
 
     @PostConstruct
@@ -61,9 +60,16 @@ public class DefaultPatientsRepository implements PatientsRepository {
         return Optional.ofNullable(patients.get(patientId))
                 .map(patient -> new PatientRepositoryResponse(patientId, patient));
     }
-    
+
     @Override
     public void update(Integer patientId, Patient updatedPatient) {
         patients.put(patientId, updatedPatient);
+    }
+
+    @Override
+    public boolean existsByNicknameAndType(String nickname, String type) {
+        return patients.values()
+                .stream()
+                .anyMatch(patient -> patient.getNickname().equalsIgnoreCase(nickname) && patient.getType().equalsIgnoreCase(type));
     }
 }

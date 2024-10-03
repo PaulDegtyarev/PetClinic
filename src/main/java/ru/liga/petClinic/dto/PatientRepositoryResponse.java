@@ -1,9 +1,9 @@
-package ru.liga.rest.dto;
+package ru.liga.petClinic.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import ru.liga.rest.entity.Patient;
+import ru.liga.petClinic.entity.Patient;
 
 @Getter
 @AllArgsConstructor

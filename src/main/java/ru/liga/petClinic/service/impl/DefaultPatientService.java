@@ -1,15 +1,18 @@
-package ru.liga.rest.service.impl;
+package ru.liga.petClinic.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.liga.rest.dto.PatientRepositoryResponse;
-import ru.liga.rest.dto.PatientRequestBody;
-import ru.liga.rest.dto.PatientResponseDto;
-import ru.liga.rest.dto.StatusRequestBody;
-import ru.liga.rest.entity.Patient;
-import ru.liga.rest.exception.PatientNotFoundException;
-import ru.liga.rest.repository.PatientsRepository;
-import ru.liga.rest.service.PatientService;
+import org.springframework.validation.BindingResult;
+import ru.liga.petClinic.dto.PatientRepositoryResponse;
+import ru.liga.petClinic.dto.PatientRequestBody;
+import ru.liga.petClinic.dto.PatientResponseDto;
+import ru.liga.petClinic.dto.StatusRequestBody;
+import ru.liga.petClinic.entity.Patient;
+import ru.liga.petClinic.exception.PatientBadRequestException;
+import ru.liga.petClinic.exception.PatientConflictException;
+import ru.liga.petClinic.exception.PatientNotFoundException;
+import ru.liga.petClinic.repository.PatientsRepository;
+import ru.liga.petClinic.service.PatientService;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -41,7 +44,18 @@ public class DefaultPatientService implements PatientService {
     }
 
     @Override
-    public PatientResponseDto createPatient(PatientRequestBody patientRequestBody) {
+    public PatientResponseDto createPatient(PatientRequestBody patientRequestBody, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            throw new PatientBadRequestException("nickname и type пациента должны быть обязательно заполнены");
+        }
+
+        if (patientsRepository.existsByNicknameAndType(
+                patientRequestBody.getNickname(),
+                patientRequestBody.getType()
+        )) {
+            throw new PatientConflictException("nickname " + patientRequestBody.getNickname() + " и type " + patientRequestBody.getType() + " заняты");
+        }
+
         Patient newPatient = new Patient(
                 patientRequestBody.getNickname(),
                 patientRequestBody.getType(),
@@ -64,7 +78,8 @@ public class DefaultPatientService implements PatientService {
 
     @Override
     public PatientResponseDto updatePatientStatusByPatientId(Integer patientId, StatusRequestBody statusRequest) {
-        PatientRepositoryResponse repositoryResponse = patientsRepository.findPatientByPatientId(patientId).orElseThrow(() -> new PatientNotFoundException("Пациент с номером :" + patientId + " не существует"));
+        PatientRepositoryResponse repositoryResponse = patientsRepository.findPatientByPatientId(patientId)
+                .orElseThrow(() -> new PatientNotFoundException("Пациент с номером: " + patientId + " не существует"));
 
         Patient foundPatientToUpdate = repositoryResponse.getPatientEntity();
         foundPatientToUpdate.updateStatus(statusRequest.getStatus());

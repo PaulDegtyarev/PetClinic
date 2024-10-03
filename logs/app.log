@@ -1,102 +1,29 @@
-2024-10-01T16:57:10.087+03:00  INFO 1314 --- [rest] [main] ru.liga.rest.RestApplication             : Starting RestApplication using Java 17.0.12 with PID 1314 (/home/paul/IdeaProjects/rest/target/classes started by paul in /home/paul/IdeaProjects/rest)
-2024-10-01T16:57:10.094+03:00 DEBUG 1314 --- [rest] [main] ru.liga.rest.RestApplication             : Running with Spring Boot v3.3.4, Spring v6.1.13
-2024-10-01T16:57:10.096+03:00  INFO 1314 --- [rest] [main] ru.liga.rest.RestApplication             : No active profile set, falling back to 1 default profile: "default"
-2024-10-01T16:57:12.469+03:00  INFO 1314 --- [rest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2024-10-01T16:57:12.502+03:00  INFO 1314 --- [rest] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-10-01T16:57:12.503+03:00  INFO 1314 --- [rest] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
-2024-10-01T16:57:12.631+03:00  INFO 1314 --- [rest] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-10-01T16:57:12.632+03:00  INFO 1314 --- [rest] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2361 ms
-2024-10-01T16:57:13.488+03:00  INFO 1314 --- [rest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2024-10-01T16:57:13.506+03:00  INFO 1314 --- [rest] [main] ru.liga.rest.RestApplication             : Started RestApplication in 4.678 seconds (process running for 5.416)
-2024-10-01T16:57:18.785+03:00  INFO 1314 --- [rest] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-10-01T16:57:18.786+03:00  INFO 1314 --- [rest] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-10-01T16:57:18.788+03:00  INFO 1314 --- [rest] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2024-10-01T16:57:18.994+03:00  INFO 1314 --- [rest] [http-nio-8080-exec-2] r.l.r.r.impl.DefaultPatientsRepository   : Сохраняю пациента с id: 3
-2024-10-01T16:57:19.006+03:00 ERROR 1314 --- [rest] [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.UnsupportedOperationException] with root cause
-
-java.lang.UnsupportedOperationException: null
-	at java.base/java.util.ImmutableCollections.uoe(ImmutableCollections.java:142) ~[na:na]
-	at java.base/java.util.ImmutableCollections$AbstractImmutableMap.put(ImmutableCollections.java:1072) ~[na:na]
-	at ru.liga.rest.repository.impl.DefaultPatientsRepository.save(DefaultPatientsRepository.java:47) ~[classes/:na]
-	at ru.liga.rest.service.impl.DefaultPatientService.createPatient(DefaultPatientService.java:53) ~[classes/:na]
-	at ru.liga.rest.controller.PatientController.createPatient(PatientController.java:31) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:569) ~[na:na]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.13.jar:6.1.13]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.13.jar:6.1.13]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.13.jar:6.1.13]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.13.jar:6.1.13]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.13.jar:6.1.13]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.13.jar:6.1.13]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.13.jar:6.1.13]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.13.jar:6.1.13]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.13.jar:6.1.13]
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.1.13.jar:6.1.13]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.30.jar:6.0]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.13.jar:6.1.13]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.30.jar:6.0]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.30.jar:10.1.30]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.13.jar:6.1.13]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.13.jar:6.1.13]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.13.jar:6.1.13]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
-	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
-
-2024-10-01T16:59:30.970+03:00  INFO 1414 --- [rest] [main] ru.liga.rest.RestApplication             : Starting RestApplication using Java 17.0.12 with PID 1414 (/home/paul/IdeaProjects/rest/target/classes started by paul in /home/paul/IdeaProjects/rest)
-2024-10-01T16:59:30.974+03:00 DEBUG 1414 --- [rest] [main] ru.liga.rest.RestApplication             : Running with Spring Boot v3.3.4, Spring v6.1.13
-2024-10-01T16:59:30.977+03:00  INFO 1414 --- [rest] [main] ru.liga.rest.RestApplication             : No active profile set, falling back to 1 default profile: "default"
-2024-10-01T16:59:32.933+03:00  INFO 1414 --- [rest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2024-10-01T16:59:32.957+03:00  INFO 1414 --- [rest] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-10-01T16:59:32.959+03:00  INFO 1414 --- [rest] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
-2024-10-01T16:59:33.053+03:00  INFO 1414 --- [rest] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-10-01T16:59:33.055+03:00  INFO 1414 --- [rest] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1966 ms
-2024-10-01T16:59:33.913+03:00  INFO 1414 --- [rest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2024-10-01T16:59:33.929+03:00  INFO 1414 --- [rest] [main] ru.liga.rest.RestApplication             : Started RestApplication in 4.013 seconds (process running for 4.686)
-2024-10-01T16:59:37.882+03:00  INFO 1414 --- [rest] [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-10-01T16:59:37.883+03:00  INFO 1414 --- [rest] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-10-01T16:59:37.885+03:00  INFO 1414 --- [rest] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2024-10-01T16:59:38.070+03:00  INFO 1414 --- [rest] [http-nio-8080-exec-3] r.l.r.r.impl.DefaultPatientsRepository   : Сохраняю пациента с id: 3
-2024-10-01T17:00:07.125+03:00  INFO 1414 --- [rest] [http-nio-8080-exec-1] r.l.r.r.impl.DefaultPatientsRepository   : Сохраняю пациента с id: 4
-2024-10-01T17:03:42.529+03:00  INFO 1509 --- [rest] [main] ru.liga.rest.RestApplication             : Starting RestApplication using Java 17.0.12 with PID 1509 (/home/paul/IdeaProjects/rest/target/classes started by paul in /home/paul/IdeaProjects/rest)
-2024-10-01T17:03:42.533+03:00 DEBUG 1509 --- [rest] [main] ru.liga.rest.RestApplication             : Running with Spring Boot v3.3.4, Spring v6.1.13
-2024-10-01T17:03:42.535+03:00  INFO 1509 --- [rest] [main] ru.liga.rest.RestApplication             : No active profile set, falling back to 1 default profile: "default"
-2024-10-01T17:03:44.480+03:00  INFO 1509 --- [rest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2024-10-01T17:03:44.502+03:00  INFO 1509 --- [rest] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-10-01T17:03:44.503+03:00  INFO 1509 --- [rest] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
-2024-10-01T17:03:44.585+03:00  INFO 1509 --- [rest] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-10-01T17:03:44.586+03:00  INFO 1509 --- [rest] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1916 ms
-2024-10-01T17:03:45.290+03:00  INFO 1509 --- [rest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2024-10-01T17:03:45.305+03:00  INFO 1509 --- [rest] [main] ru.liga.rest.RestApplication             : Started RestApplication in 3.846 seconds (process running for 4.681)
-2024-10-01T17:03:49.730+03:00  INFO 1509 --- [rest] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-10-01T17:03:49.731+03:00  INFO 1509 --- [rest] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-10-01T17:03:49.733+03:00  INFO 1509 --- [rest] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2024-10-01T17:03:49.899+03:00  INFO 1509 --- [rest] [http-nio-8080-exec-2] r.l.r.r.impl.DefaultPatientsRepository   : Сохраняю пациента с id: 3
+2024-10-03T15:54:15.000+03:00  INFO 951 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : Starting PetClinicApplication using Java 17.0.12 with PID 951 (/home/paul/IdeaProjects/rest/target/classes started by paul in /home/paul/IdeaProjects/rest)
+2024-10-03T15:54:15.004+03:00 DEBUG 951 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : Running with Spring Boot v3.3.4, Spring v6.1.13
+2024-10-03T15:54:15.006+03:00  INFO 951 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-10-03T15:54:17.773+03:00  INFO 951 --- [rest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-10-03T15:54:17.799+03:00  INFO 951 --- [rest] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-10-03T15:54:17.800+03:00  INFO 951 --- [rest] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2024-10-03T15:54:17.934+03:00  INFO 951 --- [rest] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-10-03T15:54:17.936+03:00  INFO 951 --- [rest] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2753 ms
+2024-10-03T15:54:19.025+03:00  INFO 951 --- [rest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-10-03T15:54:19.065+03:00  INFO 951 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : Started PetClinicApplication in 5.107 seconds (process running for 5.902)
+2024-10-03T15:54:40.842+03:00  INFO 951 --- [rest] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-03T15:54:40.843+03:00  INFO 951 --- [rest] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-10-03T15:54:40.845+03:00  INFO 951 --- [rest] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-10-03T15:54:41.076+03:00  INFO 951 --- [rest] [http-nio-8080-exec-2] r.l.v.r.impl.DefaultPatientsRepository   : Сохраняю пациента с id: 3
+2024-10-03T15:56:21.484+03:00  INFO 1059 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : Starting PetClinicApplication using Java 17.0.12 with PID 1059 (/home/paul/IdeaProjects/rest/target/classes started by paul in /home/paul/IdeaProjects/rest)
+2024-10-03T15:56:21.495+03:00 DEBUG 1059 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : Running with Spring Boot v3.3.4, Spring v6.1.13
+2024-10-03T15:56:21.497+03:00  INFO 1059 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-10-03T15:56:23.290+03:00  INFO 1059 --- [rest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-10-03T15:56:23.312+03:00  INFO 1059 --- [rest] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-10-03T15:56:23.313+03:00  INFO 1059 --- [rest] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2024-10-03T15:56:23.402+03:00  INFO 1059 --- [rest] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-10-03T15:56:23.403+03:00  INFO 1059 --- [rest] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1777 ms
+2024-10-03T15:56:24.173+03:00  INFO 1059 --- [rest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-10-03T15:56:24.189+03:00  INFO 1059 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : Started PetClinicApplication in 3.678 seconds (process running for 4.369)
+2024-10-03T15:56:28.939+03:00  INFO 1059 --- [rest] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-03T15:56:28.940+03:00  INFO 1059 --- [rest] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-10-03T15:56:28.942+03:00  INFO 1059 --- [rest] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-10-03T15:56:35.323+03:00  INFO 1059 --- [rest] [http-nio-8080-exec-4] r.l.v.r.impl.DefaultPatientsRepository   : Сохраняю пациента с id: 3
+2024-10-03T15:56:41.742+03:00  INFO 1059 --- [rest] [http-nio-8080-exec-6] r.l.v.r.impl.DefaultPatientsRepository   : Сохраняю пациента с id: 4
