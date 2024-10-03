@@ -32,9 +32,8 @@ build/
 ### VS Code ###
 .vscode/
 
-target/
-logs/
-mvnw.cmd
-HELP.md
+/target/
+/logs/
+/mvnw.cmd
+/HELP.md
 /images
-mvnw.cmd
