@@ -1,6 +1,7 @@
 package ru.liga.petClinic.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
@@ -200,6 +201,43 @@ public class DefaultPatientService implements PatientService {
             return imageBytes;
         } catch (IOException e) {
             throw new RuntimeException("Ошибка при чтении изображения: " + e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public void uploadPatientImageOctetStream(Integer patientId, byte[] imageBytes) {
+        PatientRepositoryResponse patient = patientsRepository.findPatientByPatientId(patientId)
+                .orElseThrow(() -> new PatientNotFoundException("Пациент с номером: " + patientId + " не найден"));
+
+        String directoryPath = "images";
+        File directory = new File(directoryPath);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+
+        String imagePath = directoryPath + File.separator + patient.getPatientId() + ".png";
+        try (FileOutputStream fos = new FileOutputStream(imagePath)) {
+            fos.write(imageBytes);
+        } catch (IOException e) {
+            throw new RuntimeException("Ошибка при сохранении изображения: " + e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public InputStreamResource downloadPatientImageOctetStream(Integer patientId) {
+        String directoryPath = "images";
+        String imagePath = directoryPath + File.separator + patientId + ".png";
+
+        File imageFile = new File(imagePath);
+        if (!imageFile.exists()) {
+            throw new FileNotFoundException("Изображение с ID " + patientId + " не найдено");
+        }
+
+        try {
+            FileInputStream fis = new FileInputStream(imageFile);
+            return new InputStreamResource(fis);
+        } catch (FileNotFoundException | java.io.FileNotFoundException e) {
+            throw new RuntimeException("Изображение не найдено: " + e.getMessage(), e);
         }
     }
 }

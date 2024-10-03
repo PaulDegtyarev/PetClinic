@@ -1,5 +1,6 @@
 package ru.liga.petClinic.service;
 
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
 import ru.liga.petClinic.dto.PatientRequestBody;
@@ -21,4 +22,9 @@ public interface PatientService {
     PatientResponseDto createPatientMultiPart(PatientRequestBody patientRequestBody, MultipartFile image);
 
     byte[] getPatientImageMultipart(Integer patientId);
+
+
+    void uploadPatientImageOctetStream(Integer patientId, byte[] imageBytes);
+
+    InputStreamResource downloadPatientImageOctetStream(Integer patientId);
 }

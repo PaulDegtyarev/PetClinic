@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -70,6 +71,24 @@ public class PatientController {
     @GetMapping("/{patientId}/image/multipart")
     public ResponseEntity<byte[]> getPatientImageMultipart(@PathVariable Integer patientId) {
         byte[] imageBytes = patientService.getPatientImageMultipart(patientId);
-        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imageBytes);
+        return ResponseEntity.ok()
+                .contentType(MediaType.IMAGE_JPEG)
+                .body(imageBytes);
+    }
+
+    @PostMapping("/{patientId}/octet-stream")
+    public ResponseEntity<String> uploadPatientImageOctetStream(
+            @PathVariable Integer patientId,
+            @RequestBody byte[] imageBytes) {
+        patientService.uploadPatientImageOctetStream(patientId, imageBytes);
+        return new ResponseEntity<>("Аватар пациента успешно добавлен", HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{patientId}/image/octet-stream")
+    public ResponseEntity<InputStreamResource> downloadPatientImageOctetStream(@PathVariable Integer patientId) {
+        InputStreamResource resource = patientService.downloadPatientImageOctetStream(patientId);
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .body(resource);
     }
 }

@@ -253,3 +253,76 @@ java.lang.NullPointerException: Cannot invoke "String.getBytes(java.nio.charset.
 	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
 
 2024-10-03T17:27:28.640+03:00  INFO 2108 --- [rest] [http-nio-8080-exec-8] r.l.p.r.impl.DefaultPatientsRepository   : Сохраняю пациента с id: 4
+2024-10-03T22:44:56.894+03:00  INFO 365 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : Starting PetClinicApplication using Java 17.0.12 with PID 365 (/home/paul/IdeaProjects/petClinic/target/classes started by paul in /home/paul/IdeaProjects/petClinic)
+2024-10-03T22:44:56.909+03:00 DEBUG 365 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : Running with Spring Boot v3.3.4, Spring v6.1.13
+2024-10-03T22:44:56.919+03:00  INFO 365 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-10-03T22:45:00.083+03:00  INFO 365 --- [rest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-10-03T22:45:00.137+03:00  INFO 365 --- [rest] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-10-03T22:45:00.138+03:00  INFO 365 --- [rest] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2024-10-03T22:45:00.275+03:00  INFO 365 --- [rest] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-10-03T22:45:00.276+03:00  INFO 365 --- [rest] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3169 ms
+2024-10-03T22:45:01.284+03:00  INFO 365 --- [rest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-10-03T22:45:01.303+03:00  INFO 365 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : Started PetClinicApplication in 6.062 seconds (process running for 7.25)
+2024-10-03T22:50:27.621+03:00  INFO 526 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : Starting PetClinicApplication using Java 17.0.12 with PID 526 (/home/paul/IdeaProjects/petClinic/target/classes started by paul in /home/paul/IdeaProjects/petClinic)
+2024-10-03T22:50:27.626+03:00 DEBUG 526 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : Running with Spring Boot v3.3.4, Spring v6.1.13
+2024-10-03T22:50:27.628+03:00  INFO 526 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-10-03T22:50:29.824+03:00  INFO 526 --- [rest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-10-03T22:50:29.847+03:00  INFO 526 --- [rest] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-10-03T22:50:29.847+03:00  INFO 526 --- [rest] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2024-10-03T22:50:29.935+03:00  INFO 526 --- [rest] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-10-03T22:50:29.936+03:00  INFO 526 --- [rest] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2110 ms
+2024-10-03T22:50:30.852+03:00  INFO 526 --- [rest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-10-03T22:50:30.879+03:00  INFO 526 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : Started PetClinicApplication in 4.177 seconds (process running for 4.856)
+2024-10-03T23:02:45.430+03:00  INFO 679 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : Starting PetClinicApplication using Java 17.0.12 with PID 679 (/home/paul/IdeaProjects/petClinic/target/classes started by paul in /home/paul/IdeaProjects/petClinic)
+2024-10-03T23:02:45.448+03:00 DEBUG 679 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : Running with Spring Boot v3.3.4, Spring v6.1.13
+2024-10-03T23:02:45.450+03:00  INFO 679 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-10-03T23:02:49.125+03:00  INFO 679 --- [rest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-10-03T23:02:49.148+03:00  INFO 679 --- [rest] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-10-03T23:02:49.149+03:00  INFO 679 --- [rest] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2024-10-03T23:02:49.247+03:00  INFO 679 --- [rest] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-10-03T23:02:49.248+03:00  INFO 679 --- [rest] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3517 ms
+2024-10-03T23:02:50.003+03:00  INFO 679 --- [rest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-10-03T23:02:50.019+03:00  INFO 679 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : Started PetClinicApplication in 5.894 seconds (process running for 7.031)
+2024-10-03T23:03:55.801+03:00  INFO 679 --- [rest] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-03T23:03:55.803+03:00  INFO 679 --- [rest] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-10-03T23:03:55.810+03:00  INFO 679 --- [rest] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2024-10-03T23:03:56.015+03:00  WARN 679 --- [rest] [http-nio-8080-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<ru.liga.petClinic.dto.PatientResponseDto> ru.liga.petClinic.controller.PatientController.uploadPatientImageOctetStream(ru.liga.petClinic.dto.PatientRequestBody,byte[])]
+2024-10-03T23:11:29.627+03:00  INFO 808 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : Starting PetClinicApplication using Java 17.0.12 with PID 808 (/home/paul/IdeaProjects/petClinic/target/classes started by paul in /home/paul/IdeaProjects/petClinic)
+2024-10-03T23:11:29.636+03:00 DEBUG 808 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : Running with Spring Boot v3.3.4, Spring v6.1.13
+2024-10-03T23:11:29.643+03:00  INFO 808 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-10-03T23:11:31.734+03:00  INFO 808 --- [rest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-10-03T23:11:31.755+03:00  INFO 808 --- [rest] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-10-03T23:11:31.756+03:00  INFO 808 --- [rest] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2024-10-03T23:11:31.845+03:00  INFO 808 --- [rest] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-10-03T23:11:31.846+03:00  INFO 808 --- [rest] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2022 ms
+2024-10-03T23:11:32.580+03:00  INFO 808 --- [rest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-10-03T23:11:32.596+03:00  INFO 808 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : Started PetClinicApplication in 4.002 seconds (process running for 4.703)
+2024-10-03T23:14:40.812+03:00  INFO 808 --- [rest] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-03T23:14:40.814+03:00  INFO 808 --- [rest] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-10-03T23:14:40.816+03:00  INFO 808 --- [rest] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-10-03T23:16:26.046+03:00  INFO 935 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : Starting PetClinicApplication using Java 17.0.12 with PID 935 (/home/paul/IdeaProjects/petClinic/target/classes started by paul in /home/paul/IdeaProjects/petClinic)
+2024-10-03T23:16:26.055+03:00 DEBUG 935 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : Running with Spring Boot v3.3.4, Spring v6.1.13
+2024-10-03T23:16:26.058+03:00  INFO 935 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-10-03T23:16:28.854+03:00  INFO 935 --- [rest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-10-03T23:16:28.874+03:00  INFO 935 --- [rest] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-10-03T23:16:28.875+03:00  INFO 935 --- [rest] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2024-10-03T23:16:28.966+03:00  INFO 935 --- [rest] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-10-03T23:16:28.967+03:00  INFO 935 --- [rest] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2717 ms
+2024-10-03T23:16:29.721+03:00  INFO 935 --- [rest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-10-03T23:16:29.739+03:00  INFO 935 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : Started PetClinicApplication in 4.654 seconds (process running for 5.238)
+2024-10-03T23:16:33.270+03:00  INFO 935 --- [rest] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-03T23:16:33.270+03:00  INFO 935 --- [rest] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-10-03T23:16:33.273+03:00  INFO 935 --- [rest] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-10-03T23:16:53.579+03:00  INFO 1033 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : Starting PetClinicApplication using Java 17.0.12 with PID 1033 (/home/paul/IdeaProjects/petClinic/target/classes started by paul in /home/paul/IdeaProjects/petClinic)
+2024-10-03T23:16:53.586+03:00 DEBUG 1033 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : Running with Spring Boot v3.3.4, Spring v6.1.13
+2024-10-03T23:16:53.593+03:00  INFO 1033 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-10-03T23:16:55.774+03:00  INFO 1033 --- [rest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-10-03T23:16:55.796+03:00  INFO 1033 --- [rest] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-10-03T23:16:55.797+03:00  INFO 1033 --- [rest] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2024-10-03T23:16:55.884+03:00  INFO 1033 --- [rest] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-10-03T23:16:55.885+03:00  INFO 1033 --- [rest] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2115 ms
+2024-10-03T23:16:56.776+03:00  INFO 1033 --- [rest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-10-03T23:16:56.793+03:00  INFO 1033 --- [rest] [main] ru.liga.petClinic.PetClinicApplication   : Started PetClinicApplication in 4.064 seconds (process running for 4.692)
+2024-10-03T23:16:58.451+03:00  INFO 1033 --- [rest] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-03T23:16:58.452+03:00  INFO 1033 --- [rest] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-10-03T23:16:58.454+03:00  INFO 1033 --- [rest] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
