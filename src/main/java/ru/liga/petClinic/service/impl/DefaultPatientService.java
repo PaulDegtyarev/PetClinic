@@ -1,7 +1,6 @@
 package ru.liga.petClinic.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.InputStreamResource;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
@@ -44,7 +43,7 @@ public class DefaultPatientService implements PatientService {
                         patientRepositoryResponse.getPatientId(),
                         patientRepositoryResponse.getPatientEntity().getNickname(),
                         patientRepositoryResponse.getPatientEntity().getType(),
-                        patientRepositoryResponse.getPatientEntity().getDate(),
+                        patientRepositoryResponse.getPatientEntity().getAppointmentdate(),
                         patientRepositoryResponse.getPatientEntity().getStatus(),
                         patientRepositoryResponse.getPatientEntity().getDescription()
                 ))
@@ -59,9 +58,9 @@ public class DefaultPatientService implements PatientService {
 
         if (patientsRepository.existsByNicknameAndType(
                 patientRequestBody.getNickname(),
-                patientRequestBody.getType()
+                patientRequestBody.getPet()
         )) {
-            throw new PatientConflictException("nickname " + patientRequestBody.getNickname() + " и type " + patientRequestBody.getType() + " заняты");
+            throw new PatientConflictException("nickname " + patientRequestBody.getNickname() + " и type " + patientRequestBody.getPet() + " заняты");
         }
 
         byte[] imageBytes = Base64.getDecoder().decode(patientRequestBody.getImageBase64());
@@ -74,7 +73,7 @@ public class DefaultPatientService implements PatientService {
 
         Patient newPatient = new Patient(
                 patientRequestBody.getNickname(),
-                patientRequestBody.getType(),
+                patientRequestBody.getPet(),
                 new Timestamp(System.currentTimeMillis()),
                 patientRequestBody.getStatus(),
                 patientRequestBody.getDescription()
@@ -93,7 +92,7 @@ public class DefaultPatientService implements PatientService {
                 savedPatient.getPatientId(),
                 savedPatient.getPatientEntity().getNickname(),
                 savedPatient.getPatientEntity().getType(),
-                savedPatient.getPatientEntity().getDate(),
+                savedPatient.getPatientEntity().getAppointmentdate(),
                 savedPatient.getPatientEntity().getStatus(),
                 savedPatient.getPatientEntity().getDescription()
         );
@@ -112,7 +111,7 @@ public class DefaultPatientService implements PatientService {
                 patientId,
                 foundPatientToUpdate.getNickname(),
                 foundPatientToUpdate.getType(),
-                foundPatientToUpdate.getDate(),
+                foundPatientToUpdate.getAppointmentdate(),
                 foundPatientToUpdate.getStatus(),
                 foundPatientToUpdate.getDescription()
         );
@@ -142,9 +141,9 @@ public class DefaultPatientService implements PatientService {
     public PatientResponseDto createPatientMultiPart(PatientRequestBody patientRequestBody, MultipartFile image) {
         if (patientsRepository.existsByNicknameAndType(
                 patientRequestBody.getNickname(),
-                patientRequestBody.getType()
+                patientRequestBody.getPet()
         )) {
-            throw new PatientConflictException("nickname " + patientRequestBody.getNickname() + " и type " + patientRequestBody.getType() + " заняты");
+            throw new PatientConflictException("nickname " + patientRequestBody.getNickname() + " и type " + patientRequestBody.getPet() + " заняты");
         }
 
         String directoryPath = "images";
@@ -158,7 +157,7 @@ public class DefaultPatientService implements PatientService {
 
             Patient newPatient = new Patient(
                     patientRequestBody.getNickname(),
-                    patientRequestBody.getType(),
+                    patientRequestBody.getPet(),
                     new Timestamp(System.currentTimeMillis()),
                     patientRequestBody.getStatus(),
                     patientRequestBody.getDescription()
@@ -175,7 +174,7 @@ public class DefaultPatientService implements PatientService {
                     savedPatient.getPatientId(),
                     savedPatient.getPatientEntity().getNickname(),
                     savedPatient.getPatientEntity().getType(),
-                    savedPatient.getPatientEntity().getDate(),
+                    savedPatient.getPatientEntity().getAppointmentdate(),
                     savedPatient.getPatientEntity().getStatus(),
                     savedPatient.getPatientEntity().getDescription()
             );

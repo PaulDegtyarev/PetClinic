@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 public class Patient {
     private String nickname;
     private String type;
-    private Timestamp date;
+    private Timestamp appointmentdate;
     private String status;
     private String description;
 

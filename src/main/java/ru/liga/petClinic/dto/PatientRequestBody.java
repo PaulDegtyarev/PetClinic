@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PatientRequestBody {
     @NotBlank private String nickname;
-    @NotBlank private String type;
+    @NotBlank private String pet;
     private String status;
     private String description;
     private String imageBase64;

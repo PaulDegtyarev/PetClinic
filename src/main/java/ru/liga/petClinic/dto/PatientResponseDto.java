@@ -12,8 +12,8 @@ import java.sql.Timestamp;
 public class PatientResponseDto {
     private Integer id;
     private String nickname;
-    private String type;
-    private Timestamp date;
+    private String pet;
+    private Timestamp appointmentdate;
     private String status;
     private String description;
 }
